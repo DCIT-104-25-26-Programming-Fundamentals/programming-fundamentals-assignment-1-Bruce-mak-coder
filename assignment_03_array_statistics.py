@@ -38,4 +38,59 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
-
+def calc_sum(numbers):
+    """Calculates the sum of a list of numbers without using built-in sum()."""
+    total = 0.0
+    for num in numbers:
+        total += num
+    return total
+def calc_average(numbers):
+    """Calculates the average of a list of numbers."""
+    if len(numbers) == 0:
+        return 0.0
+    return calc_sum(numbers) / len(numbers)
+def calc_maximum(numbers):
+    """Finds the maximum value in a list of numbers without using built-in max()."""
+    max_val = numbers[0]
+    for num in numbers[1:]:
+        if num > max_val:
+            max_val = num
+    return max_val
+def calc_minimum(numbers):
+    """Finds the minimum value in a list of numbers without using built-in min()."""
+    min_val = numbers[0]
+    for num in numbers[1:]:
+        if num < min_val:
+            min_val = num
+    return min_val
+def main():
+    try:
+        count = int(input("How many numbers? "))
+        
+        # Validation: N must be a positive integer
+        if count <= 0:
+            print("Error: The count of numbers must be a positive integer greater than zero.")
+            return
+        # Read collection of numbers
+        numbers = []
+        for i in range(1, count + 1):
+            val = float(input(f"Enter number {i}: "))
+            numbers.append(val)
+        # Helper to format display (displays integers without trailing decimals e.g., 23 instead of 23.0)
+        def format_num(val):
+            return int(val) if val.is_integer() else val
+        # Calculate statistics
+        total = calc_sum(numbers)
+        avg = calc_average(numbers)
+        maximum = calc_maximum(numbers)
+        minimum = calc_minimum(numbers)
+        # Output results
+        print("\nResults:")
+        print(f"Sum:     {format_num(total)}")
+        print(f"Average: {format_num(avg)}")
+        print(f"Maximum: {format_num(maximum)}")
+        print(f"Minimum: {format_num(minimum)}")
+    except ValueError:
+        print("Error: Invalid input. Please enter numbers only.")
+if __name__ == "__main__":
+    main()
